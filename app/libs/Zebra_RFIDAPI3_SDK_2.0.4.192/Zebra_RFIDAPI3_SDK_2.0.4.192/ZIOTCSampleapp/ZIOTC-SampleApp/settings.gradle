@@ -1,0 +1,30 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "api3Transport"
+include ':app'
+include ':api3Transport'
+include ':commonlib'
+include ':interfacelib'
+include ':api3ascii'
+include ':rfidreader'
+include ':ziotctransport'
+include ':conflict'
+include ':api3ZIOTC'
+include ':llrp'
+include ':hostservicelib'
+include ':serialservicelib'
+include ':ngeProtocol'
+include ':ngeTransport'
+include ':ngeusbtransport'
