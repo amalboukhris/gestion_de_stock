@@ -1,18 +1,23 @@
 package com.example.pda.inventory;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 
 import com.example.pda.R;
+import com.example.pda.SaidBar;
 import com.symbol.emdk.EMDKManager;
 import com.symbol.emdk.EMDKResults;
 import com.zebra.rfid.api3.*;
@@ -20,7 +25,7 @@ import com.zebra.rfid.api3.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements EMDKManager.EMDKListener {
+public class MainActivity extends  SaidBar implements EMDKManager.EMDKListener {
 
     private static final String TAG = "ZebraRFIDScanner";
     private RFIDReader rfidReader;
@@ -32,8 +37,10 @@ public class MainActivity extends AppCompatActivity implements EMDKManager.EMDKL
     private ListView lvTags;
     private ArrayList<String> tagList;
     private ArrayAdapter<String> adapter;
+    private Context appContext;
 
     private final Handler handler = new Handler(Looper.getMainLooper());
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +48,14 @@ public class MainActivity extends AppCompatActivity implements EMDKManager.EMDKL
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate()");
 
+        this.appContext = getApplicationContext();
         initializeUI();
         initializeEMDK();
     }
+
+
+
+
 
     private void initializeUI() {
         tvStatus = findViewById(R.id.tv_status);
@@ -94,13 +106,20 @@ public class MainActivity extends AppCompatActivity implements EMDKManager.EMDKL
     private void initializeRFIDReader() {
         Log.d(TAG, "Initializing RFID Reader");
         try {
-            readers = new Readers(getApplicationContext(), ENUM_TRANSPORT.SERVICE_SERIAL);
+            readers = new Readers(this, ENUM_TRANSPORT.SERVICE_SERIAL);
             handler.postDelayed(this::safeConnectToReader, 2000);
         } catch (Exception e) {
             Log.e(TAG, "RFID initialization error", e);
             updateStatus("RFID init error");
         }
+        if (appContext == null) {
+            Log.e(TAG, "Application context is null!");
+            updateStatus("Application context is null");
+            return;
+        }
+
     }
+
 
     private void safeConnectToReader() {
         if (isFinishing() || isDestroyed()) return;
@@ -149,18 +168,17 @@ public class MainActivity extends AppCompatActivity implements EMDKManager.EMDKL
             throw new Exception("Reader not connected");
         }
 
-        // Mettre le lecteur en mode déclencheur automatique
         rfidReader.Config.setTriggerMode(ENUM_TRIGGER_MODE.RFID_MODE, true);
 
-        // Configuration de l'antenne 1 (par défaut sur la plupart des Zebra MC339R)
+
         try {
             int antennaId = 1;
             Antennas.AntennaRfConfig config = rfidReader.Config.Antennas.getAntennaRfConfig(antennaId);
 
-            // Puissance maximale : 300 (30dBm)
-            config.setrfModeTableIndex(0); // Mode lecture rapide
-            config.setTari(0); // Valeur recommandée
-            config.setTransmitPowerIndex(270); // 270 = environ 27 dBm, 300 = max
+
+            config.setrfModeTableIndex(0);
+            config.setTari(0);
+            config.setTransmitPowerIndex(270);
 
             rfidReader.Config.Antennas.setAntennaRfConfig(antennaId, config);
             Log.d(TAG, "Antenna configured successfully.");

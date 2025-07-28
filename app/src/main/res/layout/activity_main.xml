@@ -17,10 +17,17 @@
         android:paddingEnd="8dp">
 
         <ImageView
+            android:id="@+id/iv_menu"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:contentDescription="Menu"
-            android:src="@drawable/ic_menu" />
+            android:src="@drawable/ic_menu"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_margin="16dp"
+            />
+
+
 
         <TextView
             android:layout_width="wrap_content"

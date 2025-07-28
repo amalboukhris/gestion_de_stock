@@ -6,17 +6,17 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="com.symbol.emdk.permission.rfid" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="com.zebra.rfid.api.READ" />
     <uses-permission android:name="com.zebra.rfid.api.WRITE" />
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="com.symbol.emdk.permission.EMDK" />
+
     <uses-feature
         android:name="com.symbol.emdk.rfid"
         android:required="true" />
@@ -31,6 +31,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PDA"
         tools:targetApi="31">
+        <activity
+            android:name=".cart.Invoice"
+            android:exported="false" />
+        <activity
+            android:name=".cart.InvoiceLine"
+            android:exported="false" />
         <activity
             android:name=".Settings.SettingActivity"
             android:exported="false" />

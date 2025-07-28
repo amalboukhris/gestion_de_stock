@@ -1,116 +1,104 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Contenu principal -->
+    <!-- ✅ Contenu principal -->
     <FrameLayout
         android:id="@+id/content_frame"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent" />
+
+    <!-- ✅ Menu latéral - doit être ENFANT DIRECT du DrawerLayout -->
+    <LinearLayout
+        android:id="@+id/left_drawer"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:background="#FFFFFF">
+
+        <!-- Contenu menu -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:background="#4672A7"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="200dp"
+                android:layout_height="100dp"
+                android:contentDescription="Logo"
+                android:src="@drawable/ic_rfid_logo" />
+        </LinearLayout>
 
         <LinearLayout
-            android:layout_width="280dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="#F8F9FA"
-            android:orientation="vertical"
-           >
+            android:id="@+id/menu_tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
-            <!-- En-tête (logo) -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:background="#4672A7"
-                android:gravity="center"
-                android:orientation="vertical">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_list" />
 
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="100dp"
-                    android:contentDescription="Logo RFID"
-                    android:src="@drawable/ic_rfid_logo" />
-            </LinearLayout>
-
-            <!-- Bouton Scan RFID -->
-
-
-            <!-- Bouton Liste des tags -->
-            <LinearLayout
-                android:id="@+id/menu_tags"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:layout_marginTop="20dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_list" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="Inventaire"
-                    android:textSize="16sp"
-                    android:textColor="#5882AB"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-
-            <!-- Bouton Recherche de tag -->
-            <LinearLayout
-                android:id="@+id/menu_search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:textColor="#5882AB">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_location" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="localisation de produit"
-                    android:textSize="16sp"
-                    android:textColor="#5882AB"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-
-            <!-- Bouton Recherche de tag -->
-            <LinearLayout
-                android:id="@+id/menu_profil"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_user"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:text="Profil"
-                    android:textSize="16sp"
-                    android:textColor="#5882AB"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-
+                android:layout_marginStart="12dp"
+                android:text="Inventaire"
+                android:textColor="#5882AB"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
-    </FrameLayout>
 
-    <!-- Menu latéral (drawer) -->
+        <LinearLayout
+            android:id="@+id/menu_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
 
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_location" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Localisation"
+                android:textColor="#5882AB"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/menu_profil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_user" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:text="Profil"
+                android:textColor="#5882AB"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>
