@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.pda.cart.CartActivity;
 import com.example.pda.inventory.MainActivity;
 
 public class SaidBar extends AppCompatActivity {
@@ -22,7 +23,7 @@ public class SaidBar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Ne pas setContentView ici ! Ce sera fait dans setContentView override.
+
     }
 
     @Override
@@ -56,7 +57,7 @@ public class SaidBar extends AppCompatActivity {
         // Clic sur items menu
         if (menuTags != null) {
             menuTags.setOnClickListener(v -> {
-                if (!(this instanceof MainActivity)) { // éviter de recharger la même activité
+                if (!(this instanceof MainActivity)) {
                     startActivity(new Intent(this, MainActivity.class));
                     drawerLayout.closeDrawer(GravityCompat.START);
                     finish();
@@ -68,7 +69,7 @@ public class SaidBar extends AppCompatActivity {
 
         if (menuSearch != null) {
             menuSearch.setOnClickListener(v -> {
-                // TODO: Démarrer SearchActivity
+                startActivity(new Intent(this, CartActivity.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
             });
         }

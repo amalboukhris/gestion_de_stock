@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pda.Models.Product;
 import com.example.pda.R;
+import com.example.pda.SaidBar;
 import com.example.pda.database.CartAdapter;
 
 
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class CartActivity extends AppCompatActivity implements RFIDHandler.RFIDListener {
+public class CartActivity extends SaidBar implements RFIDHandler.RFIDListener {
 
     private static final String TAG = "CartActivity";
 
@@ -36,7 +37,7 @@ public class CartActivity extends AppCompatActivity implements RFIDHandler.RFIDL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
+        super.setContentView(R.layout.activity_cart);
 
         invoice = new Invoice();
 

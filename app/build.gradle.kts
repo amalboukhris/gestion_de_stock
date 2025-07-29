@@ -42,9 +42,8 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation(libs.emdk)
     implementation (libs.recyclerview)
-    implementation ("com.symbol:emdk:7.6.10")
+
     implementation("com.android.volley:volley:1.2.1")
-    implementation ("com.zebra.rfid:rfid3:1.0.0")
     implementation(files("libs/Zebra_RFIDAPI3_SDK_2.0.4.192/Zebra_RFIDAPI3_SDK_2.0.4.192/API3_ASCII-release-2.0.4.192.aar"))
     implementation(files("libs/Zebra_RFIDAPI3_SDK_2.0.4.192/Zebra_RFIDAPI3_SDK_2.0.4.192/API3_CMN-release-2.0.4.192.aar"))
     implementation(files("libs/Zebra_RFIDAPI3_SDK_2.0.4.192/Zebra_RFIDAPI3_SDK_2.0.4.192/API3_INTERFACE-release-2.0.4.192.aar"))
