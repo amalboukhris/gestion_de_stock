@@ -5,19 +5,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-
 import com.example.pda.R;
-import com.example.pda.SaidBar;
+import com.example.pda.ui.SaidBar;
 import com.symbol.emdk.EMDKManager;
 import com.symbol.emdk.EMDKResults;
 import com.zebra.rfid.api3.*;
@@ -105,34 +100,36 @@ public class MainActivity extends  SaidBar implements EMDKManager.EMDKListener {
 
     private void initializeRFIDReader() {
         Log.d(TAG, "Initializing RFID Reader");
+
+        if (isFinishing() || isDestroyed()) {
+            Log.w(TAG, "Activity is finishing, skipping RFID init");
+            return;
+        }
+
         try {
             readers = new Readers(this, ENUM_TRANSPORT.SERVICE_SERIAL);
             handler.postDelayed(this::safeConnectToReader, 2000);
         } catch (Exception e) {
             Log.e(TAG, "RFID initialization error", e);
-            updateStatus("RFID init error");
+            updateStatus("RFID init error: " + e.getMessage());
+            safeDisposeReaders();
         }
-        if (appContext == null) {
-            Log.e(TAG, "Application context is null!");
-            updateStatus("Application context is null");
-            return;
-        }
-
     }
 
-
     private void safeConnectToReader() {
-        if (isFinishing() || isDestroyed()) return;
+        if (isFinishing() || isDestroyed()) {
+            Log.w(TAG, "Activity is finishing, skipping connection");
+            return;
+        }
 
         try {
             connectToReader();
         } catch (Exception e) {
             Log.e(TAG, "Safe connect error", e);
-            updateStatus("Connection failed");
+            updateStatus("Connection failed: " + e.getMessage());
             safeDisposeReaders();
         }
     }
-
     private void connectToReader() {
         Log.d(TAG, "Attempting to connect to reader");
         isReaderConnecting = true;

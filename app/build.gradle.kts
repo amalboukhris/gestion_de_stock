@@ -58,6 +58,8 @@ dependencies {
     implementation(files("libs/Zebra_RFIDAPI3_SDK_2.0.4.192/Zebra_RFIDAPI3_SDK_2.0.4.192/rfidhostlib.aar"))
     implementation(files("libs/Zebra_RFIDAPI3_SDK_2.0.4.192/Zebra_RFIDAPI3_SDK_2.0.4.192/rfidseriallib.aar"))
     implementation(files("libs/Zebra_RFIDAPI3_SDK_2.0.4.192/Zebra_RFIDAPI3_SDK_2.0.4.192/BarcodeScannerLibrary-release-28.aar"))
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
 
 }

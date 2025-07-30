@@ -1,8 +1,7 @@
-package com.example.pda;
+package com.example.pda.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,7 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.pda.cart.CartActivity;
+import com.example.pda.R;
+import com.example.pda.activities.ScanActivity;
 import com.example.pda.inventory.MainActivity;
 
 public class SaidBar extends AppCompatActivity {
@@ -69,7 +69,7 @@ public class SaidBar extends AppCompatActivity {
 
         if (menuSearch != null) {
             menuSearch.setOnClickListener(v -> {
-                startActivity(new Intent(this, CartActivity.class));
+                startActivity(new Intent(this, ScanActivity.class));
                 drawerLayout.closeDrawer(GravityCompat.START);
             });
         }

@@ -32,19 +32,25 @@
         android:theme="@style/Theme.PDA"
         tools:targetApi="31">
         <activity
-            android:name=".cart.Invoice"
+            android:name=".activities.InvoiceDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".cart.InvoiceLine"
+            android:name=".activities.ScanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.Invoice"
+            android:exported="false" />
+        <activity
+            android:name=".activities.InvoiceLine"
             android:exported="false" />
         <activity
             android:name=".Settings.SettingActivity"
             android:exported="false" />
         <activity
-            android:name=".SaidBar"
+            android:name=".ui.SaidBar"
             android:exported="false" />
         <activity
-            android:name=".cart.CartActivity"
+            android:name=".activities.CartActivity"
             android:exported="false" />
         <activity
             android:name=".auth.LoginActivity"

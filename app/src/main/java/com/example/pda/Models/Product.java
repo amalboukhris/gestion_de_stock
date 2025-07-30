@@ -28,7 +28,6 @@ public class Product {
     public int getReorderThreshold() { return reorderThreshold; }
     public void setReorderThreshold(int reorderThreshold) { this.reorderThreshold = reorderThreshold; }
 
-    // equals/hashCode pour éviter doublons dans le panier selon reference
 
     @Override
     public boolean equals(Object o) {
